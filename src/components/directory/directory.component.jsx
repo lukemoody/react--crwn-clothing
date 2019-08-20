@@ -48,8 +48,8 @@ class Directory extends React.Component {
       <div className="directory-menu">
         {// rather than doing .map(section => and writing section for all props key={section.id} etc,
         // we can destructure by writing like.map(({title, imageUrl, id}) ...
-        this.state.sections.map(({ title, imageUrl, id, size }) => (
-          <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+        this.state.sections.map(({ id, ...otherSectionProps }) => (
+          <MenuItem key={id} {...otherSectionProps} />
         ))}
       </div>
     );
