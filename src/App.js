@@ -7,40 +7,6 @@ import SignInUp from './pages/signinup/signinup.component';
 import { auth } from './firebase/firebase.utils';
 import './App.css';
 
-// const HomePage = props => {
-//   console.log(props);
-//   return (
-//     <div>
-//       <Link to="/topics">Topics</Link>
-//       <h1>Homepage</h1>
-//     </div>
-//   );
-// };
-
-// const TopicsList = props => {
-//   console.log(props);
-//   // See History -- props.match.url allows for nested url access
-//   return (
-//     <div>
-//       <h1>TopicsList</h1>
-//       <Link to={`${props.match.url}/13`}>To topic 13</Link>
-//       <Link to={`${props.match.url}/17`}>To topic 17</Link>
-//       <Link to={`${props.match.url}/21`}>To topic 21</Link>
-//     </div>
-//   );
-// };
-
-// const TopicDetail = props => {
-//   console.log(props);
-//   return (
-//     <div>
-//       <h1>TopicDetail</h1>
-//     </div>
-//   );
-// };
-
-// Store state of user when logged into the app
-
 class App extends React.Component {
   constructor() {
     super();
@@ -50,11 +16,20 @@ class App extends React.Component {
     };
   }
 
+  unsubscribeFromAuth = null;
+
   componentDidMount() {
-    auth.onAuthStateChanged(user => {
+    // Save current signed in user
+    this.unsubscribeFromAuth = auth.onAuthStateChanged(user => {
       this.setState({ currentUser: user });
+
       console.log(user);
     });
+  }
+
+  componentWillUnmount() {
+    // When signed out, remove auth
+    this.unsubscribeFromAuth();
   }
 
   render() {
