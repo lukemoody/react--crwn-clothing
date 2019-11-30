@@ -1,7 +1,7 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/crown.svg";
-import "./header.styles.scss";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ReactComponent as Logo } from '../../assets/crown.svg';
+import './header.styles.scss';
 
 // Functional component
 const Header = () => (
@@ -15,6 +15,9 @@ const Header = () => (
       </Link>
       <Link className="option" to="/contact">
         CONTACT
+      </Link>
+      <Link className="option" to="/signin">
+        SIGN IN
       </Link>
     </div>
   </div>

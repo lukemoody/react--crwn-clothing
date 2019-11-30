@@ -4,6 +4,7 @@ import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInUp from './pages/signinup/signinup.component';
+import { auth } from './firebase/firebase.utils';
 import './App.css';
 
 // const HomePage = props => {
@@ -38,17 +39,36 @@ import './App.css';
 //   );
 // };
 
-function App() {
-  return (
-    <div>
-      <Header />
-      <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/shop" component={ShopPage} />
-        <Route exact path="/signin" component={SignInUp} />
-      </Switch>
-    </div>
-  );
+// Store state of user when logged into the app
+
+class App extends React.Component {
+  constructor() {
+    super();
+
+    this.state = {
+      currentUser: null
+    };
+  }
+
+  componentDidMount() {
+    auth.onAuthStateChanged(user => {
+      this.setState({ currentUser: user });
+      console.log(user);
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <Header />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+          <Route exact path="/shop" component={ShopPage} />
+          <Route exact path="/signin" component={SignInUp} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 export default App;
