@@ -1,6 +1,7 @@
 import React from 'react';
 import SignIn from '../../components/signin/signin.component';
 import './signinup.styles.scss';
+import SignUp from '../../components/sign-up/sign-up.component';
 
 /**
  * Functional component
@@ -10,6 +11,7 @@ import './signinup.styles.scss';
 const SignInUp = () => (
   <div className="sign-in-and-up">
     <SignIn />
+    <SignUp />
   </div>
 );
 
