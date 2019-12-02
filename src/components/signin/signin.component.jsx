@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FormInput from '../../components/form-input/form-input.component';
 import CustomButton from '../../components/custom-button/custom-button.component';
-import { signInWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signInWithGoogle } from '../../firebase/firebase.utils';
 
 import './signin.styles.scss';
 
@@ -25,9 +25,19 @@ class SignIn extends Component {
    * Arrow function so that this means this inside of it
    * Passes down data to sub components for inputs and buttons
    */
-  handleSubmit = e => {
+  handleSubmit = async e => {
     // 1 Prevent default form action
     e.preventDefault();
+
+    // For signIn with email/password setState if successful or log error
+    const { email, password } = this.state;
+
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      this.setState({ email: '', password: '' });
+    } catch (error) {
+      console.log(error);
+    }
 
     // 2. clear out fields back to an empty string
     this.setState({ email: '', password: '' });
