@@ -1,11 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import './App.css';
 import Header from './components/header/header.component';
 import HomePage from './pages/homepage/homepage.component';
 import ShopPage from './pages/shop/shop.component';
 import SignInUp from './pages/signinup/signinup.component';
 import { auth, createUserProfileDocument } from './firebase/firebase.utils';
-import './App.css';
 
 class App extends React.Component {
   constructor() {
