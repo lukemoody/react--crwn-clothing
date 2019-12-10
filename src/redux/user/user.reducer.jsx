@@ -1,3 +1,5 @@
+import { UserActionTypes } from './user.types';
+
 // Set intial state
 const INITIAL_STATE = {
   currentUser: null
@@ -7,7 +9,7 @@ const INITIAL_STATE = {
 const userReducer = (state = INITIAL_STATE, action) => {
   // based on action.type string value, do something
   switch (action.type) {
-    case 'SET_CURRENT_USER':
+    case UserActionTypes.SET_CURRENT_USER:
       return {
         ...state, // ... (spred state)
         currentUser: action.payload
